@@ -71,7 +71,7 @@ cd "/c/Users/Stonedge/Website AndreCarmo/IA"
 cp "../stonedgeworld/redirects-para-site-principal/stonedgeworld.html" stonedgeworld.html
 cp "../stonedgeworld/redirects-para-site-principal/stonedgeworld-inscricao.html" stonedgeworld-inscricao.html
 ```
-Editar `sitemap.xml`: trocar `https://andrecarmo.pt/stonedgeworld.html` por `https://stonedgeworld.andrecarmo.pt/` nas linhas 133-134 e 141 (manter a entrada `en/stonedgeworld.html`).
+Editar `sitemap.xml`: trocar `https://andrecarmo.pt/stonedgeworld.html` por `https://stonedgeworld.andrecarmo.pt/` no `<loc>` da linha 133.
 Depois rever `git diff`, e só então commit + push (regra: confirmar que não há mais alterações pendentes).
 
 ## Passo 7 — verificações finais (MANUAL)
@@ -83,5 +83,5 @@ Depois rever `git diff`, e só então commit + push (regra: confirmar que não h
 - Onde o endereço antigo esteja partilhado (cartazes, WhatsApp, Play Console, juntas de freguesia): atualizar para o novo.
 
 ## Pendentes / decisões
-- `en/stonedgeworld.html` é uma versão **antiga** (ainda tem cabeçalho/nav e formulário Formspree). Ficou no site principal e o hreflang `en` aponta lá. Decidir: atualizar e mover para `/en/` no subdomínio, ou remover.
-- `.vscode/mcp.json` está untracked no repo `IA`; pode conter chaves. Sugiro criar `.gitignore` com `.vscode/` antes do próximo commit.
+- ~~`en/stonedgeworld.html`~~ removida em 2026-10-05 (versão antiga); hreflang `en` retirado do subdomínio, do `stonedgeworld.html` e do `sitemap.xml`.
+- ~~`.vscode/mcp.json`~~ protegido em 2026-10-05: `.gitignore` no repo `IA` (e neste) ignora `.vscode/`, `.mcp.json`, `.env*`, `*.key`, `*.pem`, `secrets*.json`. Chaves de API para servidores MCP: usar `"inputs"` com `"password": true` no `mcp.json` (o VS Code pede o valor e guarda-o fora do ficheiro), nunca escrever a chave em claro.
