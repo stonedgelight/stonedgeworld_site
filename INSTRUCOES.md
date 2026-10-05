@@ -31,8 +31,6 @@ cd "/c/Users/Stonedge/Website AndreCarmo/stonedgeworld"
 git init -b main
 git config user.name "André Carmo"
 git config user.email "andre.carmo@gmail.com"
-git config user.name "André Carmo"
-git config user.email "andre.carmo@gmail.com"
 git add .
 git commit -m "StonedgeWorld: site do subdomínio stonedgeworld.andrecarmo.pt"
 git remote add origin https://github.com/stonedgelight/stonedgeworld_site.git
