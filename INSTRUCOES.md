@@ -24,11 +24,15 @@ Esta pasta é esse novo site, já pronta:
 1. https://github.com/new → Owner `stonedgelight`, nome `stonedgeworld_site`, **Public** (Pages gratuito exige repo público), sem README/.gitignore/licença.
 2. Create repository.
 
-## Passo 2 — publicar esta pasta (AUTOMÁTICO, correr no Git Bash)
+## Passo 2 — publicar esta pasta (FEITO em 2026-10-05, commit 5f7dd13)
 ```bash
 cd "/c/Users/Stonedge/Website AndreCarmo/stonedgeworld"
 # (a pasta redirects-para-site-principal/ está no .gitignore e não será publicada)
 git init -b main
+git config user.name "André Carmo"
+git config user.email "andre.carmo@gmail.com"
+git config user.name "André Carmo"
+git config user.email "andre.carmo@gmail.com"
 git add .
 git commit -m "StonedgeWorld: site do subdomínio stonedgeworld.andrecarmo.pt"
 git remote add origin https://github.com/stonedgelight/stonedgeworld_site.git
