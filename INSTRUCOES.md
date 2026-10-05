@@ -64,7 +64,7 @@ Repetir até a secção 1 (DNS) dar OK (normalmente 5-30 min, até 24h). Depois:
 3. Marcar **Enforce HTTPS**.
 4. `bash verificar.sh` → secções 1-4 e 6 devem estar todas OK.
 
-## Passo 6 — redirecionar as páginas antigas no site principal (AUTOMÁTICO, após passo 5 OK)
+## Passo 6 — redirecionar as páginas antigas no site principal (FEITO em 2026-10-05, commit IA e856667)
 No repo `IA`:
 ```bash
 cd "/c/Users/Stonedge/Website AndreCarmo/IA"
