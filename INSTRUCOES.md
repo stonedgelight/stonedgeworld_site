@@ -14,17 +14,17 @@ Esta pasta é esse novo site, já pronta:
 | index.html | stonedgeworld.html | canonical + hreflang para o subdomínio; link `inscricao.html` |
 | inscricao.html | stonedgeworld-inscricao.html | canonical; link de regresso `index.html` |
 | cookie-consent.js | igual | link da Política de Privacidade passou a absoluto (https://andrecarmo.pt/politica-privacidade.html) |
-| favicon.svg | igual | — |
+| favicon.svg | igual | (nada) |
 | CNAME | novo | `stonedgeworld.andrecarmo.pt` |
-| .nojekyll, 404.html | novos | — |
+| .nojekyll, 404.html | novos | (nada) |
 | redirects-para-site-principal/ | novos | ficheiros para substituir no repo `IA` **só no passo 6** |
 | verificar.sh | novo | verificação automática (`bash verificar.sh`) |
 
-## Passo 1 — criar o repositório no GitHub (MANUAL)
+## Passo 1: criar o repositório no GitHub (MANUAL)
 1. https://github.com/new → Owner `stonedgelight`, nome `stonedgeworld_site`, **Public** (Pages gratuito exige repo público), sem README/.gitignore/licença.
 2. Create repository.
 
-## Passo 2 — publicar esta pasta (FEITO em 2026-10-05, commit 5f7dd13)
+## Passo 2: publicar esta pasta (FEITO em 2026-10-05, commit 5f7dd13)
 ```bash
 cd "/c/Users/Stonedge/Website AndreCarmo/stonedgeworld"
 # (a pasta redirects-para-site-principal/ está no .gitignore e não será publicada)
@@ -37,13 +37,13 @@ git remote add origin https://github.com/stonedgelight/stonedgeworld_site.git
 git push -u origin main
 ```
 
-## Passo 3 — ativar o GitHub Pages (MANUAL)
+## Passo 3: ativar o GitHub Pages (MANUAL)
 Repo `stonedgeworld_site` → Settings → Pages:
 1. Source: **Deploy from a branch**; Branch **main** / **(root)** → Save.
 2. Custom domain: `stonedgeworld.andrecarmo.pt` → Save. (O ficheiro CNAME já está no repo; a UI deve mostrá-lo.)
 3. Deixar "Enforce HTTPS" para o passo 5 (só fica disponível após o certificado ser emitido).
 
-## Passo 4 — DNS nos dominios.pt (MANUAL)
+## Passo 4: DNS nos dominios.pt (MANUAL)
 Painel dominios.pt → andrecarmo.pt → Gestão de DNS → adicionar registo:
 | Tipo | Nome/Host | Valor/Destino | TTL |
 |---|---|---|---|
@@ -54,7 +54,7 @@ Notas:
 - **Não** criar registos A para o subdomínio; só o CNAME.
 - Não mexer nos registos A do apex nem no CNAME `www`.
 
-## Passo 5 — esperar propagação e ativar HTTPS (SEMI-AUTOMÁTICO)
+## Passo 5: esperar propagação e ativar HTTPS (SEMI-AUTOMÁTICO)
 ```bash
 bash verificar.sh
 ```
@@ -64,7 +64,7 @@ Repetir até a secção 1 (DNS) dar OK (normalmente 5-30 min, até 24h). Depois:
 3. Marcar **Enforce HTTPS**.
 4. `bash verificar.sh` → secções 1-4 e 6 devem estar todas OK.
 
-## Passo 6 — redirecionar as páginas antigas no site principal (FEITO em 2026-10-05, commit IA e856667)
+## Passo 6: redirecionar as páginas antigas no site principal (FEITO em 2026-10-05, commit IA e856667)
 No repo `IA`:
 ```bash
 cd "/c/Users/Stonedge/Website AndreCarmo/IA"
@@ -74,7 +74,7 @@ cp "../stonedgeworld/redirects-para-site-principal/stonedgeworld-inscricao.html"
 Editar `sitemap.xml`: trocar `https://andrecarmo.pt/stonedgeworld.html` por `https://stonedgeworld.andrecarmo.pt/` no `<loc>` da linha 133.
 Depois rever `git diff`, e só então commit + push (regra: confirmar que não há mais alterações pendentes).
 
-## Passo 7 — verificações finais (MANUAL)
+## Passo 7: verificações finais (MANUAL)
 - Abrir no telemóvel https://stonedgeworld.andrecarmo.pt/ e /inscricao.html; testar botão de inscrição, botão WhatsApp e link de regresso.
 - Banner de cookies: o link "Política de Privacidade" abre andrecarmo.pt noutra aba.
 - Abrir https://andrecarmo.pt/stonedgeworld.html → deve saltar para o subdomínio.

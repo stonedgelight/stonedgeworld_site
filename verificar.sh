@@ -16,7 +16,7 @@ code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "https://$H/"); [ -z
 code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "https://$H/inscricao.html"); [ -z "$c" ] && c=000
 [ "$code" = "200" ] && ok "https://$H/inscricao.html -> 200" || ko "/inscricao.html -> $code"
 loc=$(curl -s -o /dev/null -w '%{redirect_url}' --max-time 15 "http://$H/" || true)
-[[ "$loc" == https://$H/* ]] && ok "http -> https ($loc)" || ko "http não redireciona para https (got '$loc') — ativar 'Enforce HTTPS' no GitHub"
+[[ "$loc" == https://$H/* ]] && ok "http -> https ($loc)" || ko "http não redireciona para https (got '$loc'): ativar 'Enforce HTTPS' no GitHub"
 echo "== 3. Certificado TLS =="
 if curl -sS --max-time 15 "https://$H/" -o /dev/null 2>/tmp/tlserr; then ok "certificado válido para $H"; else ko "TLS: $(cat /tmp/tlserr)"; fi
 echo "== 4. Conteúdo =="
@@ -36,5 +36,5 @@ echo "== 6. Site principal continua OK =="
 code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "https://andrecarmo.pt/"); [ -z "$c" ] && c=000
 [ "$code" = "200" ] && ok "https://andrecarmo.pt/ -> 200" || ko "site principal -> $code"
 echo
-[ $FAIL = 0 ] && echo "TUDO OK" || echo "Há falhas — ver acima."
+[ $FAIL = 0 ] && echo "TUDO OK" || echo "Há falhas: ver acima."
 exit $FAIL
