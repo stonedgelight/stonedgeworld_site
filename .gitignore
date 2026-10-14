@@ -11,3 +11,6 @@ redirects-para-site-principal/
 *.key
 *.pem
 secrets*.json
+
+# Ficheiros temporários do CLI do Supabase (o CLI corre só no repositório da app)
+supabase/
