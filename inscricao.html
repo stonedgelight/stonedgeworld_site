@@ -81,6 +81,14 @@ section{padding:88px 0;position:relative}
 .formbox .msg.ok{display:block;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);color:var(--green)}
 .formbox .msg.err{display:block;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171}
 .formbox .email-warn{font-size:.875rem;color:var(--amber);margin-top:-.8rem;margin-bottom:1rem;display:none}
+.sucesso{text-align:center;padding:1rem .5rem}
+.sucesso:focus{outline:none}
+.sucesso .ico{font-size:3.25rem;color:var(--green);margin-bottom:1rem}
+.sucesso h3{font-family:var(--heading);font-size:1.6rem;font-weight:700;margin-bottom:1rem;color:var(--text)}
+.sucesso p{font-size:1.125rem;line-height:1.7;margin-bottom:.9rem}
+.sucesso .sucemail{color:#93c5fd;overflow-wrap:anywhere}
+.sucesso .btn-s{background:transparent;color:var(--text);border:1px solid var(--border);margin-top:.75rem;min-height:52px;font-size:1rem}
+.sucesso .btn-s:hover{border-color:var(--accent)}
 .hp-field{position:absolute;left:-9999px;opacity:0;height:0;width:0;overflow:hidden;pointer-events:none;tab-index:-1}
 
 @media(max-width:480px){.insdados{padding:1.2rem}.ins p{font-size:1.1rem}.formbox{padding:1.3rem}}
@@ -102,9 +110,9 @@ section{padding:88px 0;position:relative}
       <p>O StonedgeWorld mostra-te pessoas com 40+ anos que vivem perto, até 40 km, para conversar, fazer uma videochamada e combinar encontros na comunidade. É gratuito e não tem publicidade.</p>
 
       <h2>Como funciona o teste</h2>
-      <p>Numa sessão presencial em Gondomar, no final de outubro, ajudamos cada pessoa a instalar a versão de teste pela Google Play e a criar o perfil.</p>
+      <p>Numa sessão presencial em Gondomar, no final de outubro, ou pelo link direto enviado por email, cada pessoa instala a versão de teste pela Google Play e cria o perfil, com a nossa ajuda se precisar.</p>
       <p>Seguem-se duas semanas de utilização. Podes sair quando quiseres.</p>
-      <p>O local e a hora seguem por email a quem se inscrever.</p>
+      <p>O local e a hora da parte presencial seguem por email a quem se inscrever.</p>
 
       <h2>Inscrição</h2>
       <div class="formbox" id="formbox">
@@ -149,8 +157,17 @@ section{padding:88px 0;position:relative}
             </button>
           </div>
 
-          <div class="msg" id="msg"></div>
+          <div class="msg" id="msg" role="alert"></div>
         </form>
+
+        <div class="sucesso" id="sucesso" role="status" aria-live="polite" tabindex="-1" hidden>
+          <div class="ico"><i class="fas fa-circle-check" aria-hidden="true"></i></div>
+          <h3>Inscrição enviada</h3>
+          <p>Obrigado, <span id="suc-nome"></span>. A tua inscrição no grupo de teste foi recebida.</p>
+          <p>Vais receber em <span class="sucemail" id="suc-email"></span> o local e a hora da sessão presencial e o link de instalação.</p>
+          <p>Se não vires nada, procura também na pasta de spam.</p>
+          <button type="button" class="btn btn-s" id="outra-btn"><i class="fas fa-user-plus" aria-hidden="true"></i> Inscrever outra pessoa</button>
+        </div>
       </div>
 
       <p>Para dúvidas, liga ou envia mensagem por WhatsApp para o <a href="tel:+351912405722">912&nbsp;405&nbsp;722</a> ou escreve para <a href="mailto:andre.carmo@gmail.com">andre.carmo@gmail.com</a>.</p>
@@ -239,10 +256,44 @@ section{padding:88px 0;position:relative}
   var msgEl = document.getElementById('msg');
   var submitBtn = document.getElementById('submit-btn');
 
+  var sucessoEl = document.getElementById('sucesso');
+
+  function mostrarErro(texto) {
+    msgEl.textContent = texto;
+    msgEl.className = 'msg err';
+    msgEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function limparFormulario() {
+    form.reset();
+    document.getElementById('ts').value = Date.now().toString();
+    freguesiaSel.disabled = true;
+    freguesiaSel.innerHTML = '<option value="">Escolhe primeiro o concelho</option>';
+    emailWarn.style.display = 'none';
+    msgEl.className = 'msg';
+    msgEl.textContent = '';
+  }
+
+  // Depois do envio, o formulário sai e fica só a confirmação
+  function mostrarSucesso(nome, email) {
+    document.getElementById('suc-nome').textContent = nome.split(' ')[0];
+    document.getElementById('suc-email').textContent = email;
+    limparFormulario();
+    form.hidden = true;
+    sucessoEl.hidden = false;
+    sucessoEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sucessoEl.focus({ preventScroll: true });
+  }
+
+  document.getElementById('outra-btn').addEventListener('click', function () {
+    sucessoEl.hidden = true;
+    form.hidden = false;
+    document.getElementById('nome').focus();
+  });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     msgEl.className = 'msg';
-    msgEl.style.display = 'none';
 
     var nome = document.getElementById('nome').value.trim();
     var email = emailInput.value.trim();
@@ -252,13 +303,11 @@ section{padding:88px 0;position:relative}
     var rgpd = document.getElementById('rgpd').checked;
 
     if (!nome || !email || !concelho || !freguesia || !confirma40 || !rgpd) {
-      msgEl.textContent = 'Preenche todos os campos e marca as duas caixas.';
-      msgEl.className = 'msg err';
+      mostrarErro('Preenche todos os campos e marca as duas caixas.');
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      msgEl.textContent = 'O email não parece válido. Confirma e tenta de novo.';
-      msgEl.className = 'msg err';
+      mostrarErro('O email não parece válido. Confirma e tenta de novo.');
       return;
     }
 
@@ -285,21 +334,13 @@ section{padding:88px 0;position:relative}
     .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
     .then(function (result) {
       if (result.ok) {
-        msgEl.textContent = 'A tua inscrição foi recebida! O link de instalação chega por email quando a lista for carregada na Google Play.';
-        msgEl.className = 'msg ok';
-        form.reset();
-        document.getElementById('ts').value = Date.now().toString();
-        freguesiaSel.disabled = true;
-        freguesiaSel.innerHTML = '<option value="">Escolhe primeiro o concelho</option>';
-        emailWarn.style.display = 'none';
+        mostrarSucesso(nome, email);
       } else {
-        msgEl.textContent = result.data.error || 'Ocorreu um erro. Tenta de novo.';
-        msgEl.className = 'msg err';
+        mostrarErro((result.data && result.data.error) || 'Ocorreu um erro. Tenta de novo.');
       }
     })
     .catch(function () {
-      msgEl.textContent = 'Não foi possível enviar. Verifica a ligação e tenta de novo.';
-      msgEl.className = 'msg err';
+      mostrarErro('Não foi possível enviar. Verifica a ligação e tenta de novo.');
     })
     .finally(function () {
       submitBtn.disabled = false;
