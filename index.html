@@ -9,6 +9,23 @@
     <link rel="alternate" hreflang="x-default" href="https://stonedgeworld.andrecarmo.pt/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="description" content="Solução comunitária de combate ao isolamento social dos adultos 40+ em Portugal. Do isolamento ao convívio presencial, em parceria com câmaras e juntas de freguesia. Gratuita, sem fins comerciais sobre os utilizadores.">
+<!-- Pré-visualização do link nas redes sociais e no WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="StonedgeWorld">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:url" content="https://stonedgeworld.andrecarmo.pt/">
+<meta property="og:title" content="StonedgeWorld: do isolamento ao convívio presencial">
+<meta property="og:description" content="Conhecer pessoas com 40+ anos que vivem perto de ti. Projeto comunitário gratuito, em parceria com câmaras e juntas de freguesia.">
+<meta property="og:image" content="https://stonedgeworld.andrecarmo.pt/img/partilha.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="StonedgeWorld: conhecer pessoas com 40+ anos que vivem perto de ti">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="StonedgeWorld: do isolamento ao convívio presencial">
+<meta name="twitter:description" content="Conhecer pessoas com 40+ anos que vivem perto de ti. Projeto comunitário gratuito, em parceria com câmaras e juntas de freguesia.">
+<meta name="twitter:image" content="https://stonedgeworld.andrecarmo.pt/img/partilha.jpg">
+<meta name="twitter:image:alt" content="StonedgeWorld: conhecer pessoas com 40+ anos que vivem perto de ti">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
@@ -96,6 +113,8 @@ section{padding:88px 0;position:relative}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .h1{font-family:var(--heading);font-size:clamp(2.3rem,6vw,4.4rem);font-weight:800;line-height:1.07;letter-spacing:-.03em;margin-bottom:1.4rem;animation:fup .6s .1s ease both}
 .h1 .acc{color:var(--accent)}
+.hfig{max-width:640px;margin:0 auto 1.8rem;border-radius:var(--rl);overflow:hidden;border:1px solid var(--border);box-shadow:0 14px 44px rgba(0,0,0,.45);animation:fup .6s .12s ease both}
+.hfig img{display:block;width:100%;height:auto}
 .hp{font-size:1.1rem;color:var(--muted);max-width:540px;line-height:1.75;margin-bottom:1.2rem;animation:fup .6s .15s ease both}
 .hcmt{display:inline-flex;align-items:center;gap:.6rem;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:.6rem 1rem;font-size:.83rem;color:var(--green);font-weight:500;margin-bottom:2.5rem;animation:fup .6s .2s ease both}
 .hctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem;animation:fup .6s .25s ease both}
@@ -169,6 +188,13 @@ section{padding:88px 0;position:relative}
 .ntags{display:flex;gap:.45rem;flex-wrap:wrap}
 .ntag{font-size:.77rem;padding:.22rem .65rem;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);border-radius:100px;color:#fca5a5}
 
+/* ECRÃ DE ENTRADA: mesmo fundo do cronograma, sem margem em baixo, para as duas secções seguirem como uma só */
+#ecra{background:var(--bg);padding-bottom:0}
+#ecra .hdr{margin-bottom:2.5rem}
+.phone{position:relative;width:min(270px,72vw);margin:0 auto;padding:9px;background:#0b1120;border:1px solid var(--border);border-radius:34px;box-shadow:0 18px 50px rgba(0,0,0,.5),0 0 0 6px rgba(37,99,235,.06)}
+.phone::before{content:'';position:absolute;inset:-60px -40px;background:radial-gradient(ellipse,rgba(37,99,235,.14),transparent 65%);z-index:-1;pointer-events:none}
+.phone img{display:block;width:100%;height:auto;border-radius:26px}
+
 /* CRONOGRAMA */
 #cronograma{background:var(--bg)}
 #cronograma .tld{background:var(--bg)}
@@ -234,6 +260,7 @@ section{padding:88px 0;position:relative}
   <div class="c">
     <div class="hi">
       <h1 class="h1"><span class="acc">StonedgeWorld</span><br>Do isolamento<br>ao convívio presencial</h1>
+      <figure class="hfig"><img src="img/grafico-2.jpg" width="1024" height="500" alt="StonedgeWorld: conhecer pessoas com 40+ anos que vivem perto de ti. Ilustração de duas figuras da floresta de mãos dadas." fetchpriority="high" decoding="async"></figure>
       <p class="hp">Uma solução comunitária que usa a tecnologia <br>para um único fim: tirar os adultos 40+ do isolamento <br>e levá-los a conhecer pessoas na vida real, na sua cidade. <br>Desenvolvida em parceria com câmaras municipais <br>e juntas de freguesia <br>a tirar Portugal do sofá.</p>
       <div class="hcmt"><i class="fas fa-lock"></i> Compromisso público: nunca haverá modelo comercial sobre os utilizadores</div>
       <div class="hstats">
@@ -418,6 +445,18 @@ flowchart TD
         </tbody>
       </table>
     </div>
+  </div>
+</section>
+
+<!-- ECRÃ DE ENTRADA -->
+<section id="ecra">
+  <div class="c">
+    <div class="hdr rv">
+      <span class="lbl"><i class="fas fa-mobile-alt"></i> No telemóvel</span>
+      <h2 class="sh">Assim abre o StonedgeWorld</h2>
+      <p class="sd">Entras com a tua conta ou crias uma nova. Nesta fase, só em telemóveis Android.</p>
+    </div>
+    <figure class="phone rv"><img src="img/ecra-entrada.jpg" width="600" height="1219" alt="Ecrã de entrada do StonedgeWorld: duas figuras da floresta de mãos dadas, com os botões Entrar e Criar conta" loading="lazy" decoding="async"></figure>
   </div>
 </section>
 
