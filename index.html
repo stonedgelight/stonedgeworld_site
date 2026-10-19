@@ -188,16 +188,16 @@ section{padding:88px 0;position:relative}
 .ntags{display:flex;gap:.45rem;flex-wrap:wrap}
 .ntag{font-size:.77rem;padding:.22rem .65rem;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);border-radius:100px;color:#fca5a5}
 
-/* ECRÃ DE ENTRADA: mesmo fundo do cronograma, sem margem em baixo, para as duas secções seguirem como uma só */
-#ecra{background:var(--bg);padding-bottom:0}
+/* ECRÃ DE ENTRADA: fundo alternado com «Para quem compara» (antes) e o cronograma (depois) */
+#ecra{background:var(--bg)}
 #ecra .hdr{margin-bottom:2.5rem}
 .phone{position:relative;width:min(270px,72vw);margin:0 auto;padding:9px;background:#0b1120;border:1px solid var(--border);border-radius:34px;box-shadow:0 18px 50px rgba(0,0,0,.5),0 0 0 6px rgba(37,99,235,.06)}
 .phone::before{content:'';position:absolute;inset:-60px -40px;background:radial-gradient(ellipse,rgba(37,99,235,.14),transparent 65%);z-index:-1;pointer-events:none}
 .phone img{display:block;width:100%;height:auto;border-radius:26px}
 
 /* CRONOGRAMA */
-#cronograma{background:var(--bg)}
-#cronograma .tld{background:var(--bg)}
+#cronograma{background:var(--bg3)}
+#cronograma .tld{background:var(--bg3)}
 .tl{position:relative;padding-left:2.44rem;max-width:700px}
 .tl::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),rgba(37,99,235,.08))}
 .tli{position:relative;padding-bottom:2.4rem}
