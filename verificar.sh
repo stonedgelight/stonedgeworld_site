@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Verificação automática do subdomínio stonedgeworld.andrecarmo.pt
-# Correr no Git Bash:  bash verificar.sh
+# Correr no terminal do Ubuntu (desde 2026-11-07; antes no Git Bash do Windows):  bash verificar.sh
 H="stonedgeworld.andrecarmo.pt"
 ok(){ printf '  \033[32mOK\033[0m   %s\n' "$1"; }
 ko(){ printf '  \033[31mFALHA\033[0m %s\n' "$1"; FAIL=1; }
